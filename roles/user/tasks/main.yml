@@ -1,0 +1,21 @@
+- name: Import NodeJS Common Role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: User and Application Setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: prereq
+
+- name: Systemd Setup including daemon
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
+
+- name: Enable and start application with daemon
+  ansible.builtin.systemd_service:
+    name: user
+    enabled: true
+    state: started
+    daemon_reload: true

@@ -1,0 +1,31 @@
+- name: Import NodeJS Common Role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: User and Application Setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: prereq
+
+- name: Systemd Setup including daemon
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
+
+- name:  Copy MongoDB repo file
+  ansible.builtin.template:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install Mongo client
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: installed
+
+- name: Load Master Data
+  community.mongodb.mongodb_shell:
+    login_host: mongodb-{{ ENV }}.azdevopsv82.online
+    file: "/app/db/master-data.js"
+    idempotent: yes
+
