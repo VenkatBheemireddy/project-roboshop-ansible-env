@@ -36,15 +36,15 @@
     name: nginx
     enabled: true
 
-- name: Enable Nginx
-  ansible.builtin.shell: systemctl enable nginx
+#- name: Enable Nginx
+#  ansible.builtin.shell: systemctl enable nginx
+#
+#- name: Restart Nginx
+#  ansible.builtin.shell: systemctl restart nginx
 
-- name: Restart Nginx
-  ansible.builtin.shell: systemctl restart nginx
-
-#- name: Start Nginx service
-#  ansible.builtin.systemd_service:
-#    state: restarted
-#    name: nginx
-#    enabled: true
+- name: Start Nginx service
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: nginx
+    enabled: true
 
