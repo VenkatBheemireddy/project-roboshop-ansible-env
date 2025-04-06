@@ -26,7 +26,9 @@
     * make dev-apply app_name=frontend
 6. After completion of the above steps, open the browser and run (http://<public-ip-address>).
 7. You will get the roboshop home page.
-   NOTE: If you don't see categories on the project home page then re-run "catalogue" component (i.e., make app_name=mongodb).
 
+NOTES:
+1. If you don't see categories on the project home page then re-run "catalogue" component (i.e., make dev-apply app_name=catalogue).
+2. In the worst case, delete and re-create the catalogue VM and then run make file again.
 
 
